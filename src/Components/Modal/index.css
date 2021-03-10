@@ -1,0 +1,12 @@
+.color-picker-btn {
+  width: 60px;
+  height: 23px;
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+h3 {
+  margin: 0.7rem 0 !important;
+}
