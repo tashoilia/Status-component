@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Space, Select, message } from "antd";
 import { ChromePicker } from "react-color";
 import "./index.css";
+import { UserContext } from "../../Context/index";
 
 const { Option } = Select;
 export default function Status({ isModalVisible, setIsModalVisible }) {
@@ -37,6 +38,8 @@ export default function Status({ isModalVisible, setIsModalVisible }) {
   const [backgroundColor, setBackgroundColor] = useState("#9ee5b8");
   const [textColor, setTextColor] = useState("#000");
   const [displayTextPicker, setDisplayTextPicker] = useState(false);
+
+  const User = UserContext(UserContext);
 
   const popover = {
     position: "absolute",
