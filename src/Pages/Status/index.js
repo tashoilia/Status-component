@@ -22,7 +22,6 @@ export default function Status() {
     setIsModalVisible(true);
   };
 
-  console.log(User);
   return (
     <div className="status-wrapper">
       <Row gutter={16}>

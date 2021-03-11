@@ -1,37 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal, Button, Space, Select, message } from "antd";
 import { ChromePicker } from "react-color";
 import "./index.css";
 import { UserContext } from "../../Context/index";
 
 const { Option } = Select;
+
 export default function Status({ isModalVisible, setIsModalVisible }) {
-  const [statuses, setStatuses] = useState([
-    {
-      value: "Pending",
-      backgroundColor: "3fc5203",
-      textColor: "#e7bbbb",
-      order: "1",
-    },
-    {
-      value: "Completed",
-      backgroundColor: "#fc5223",
-      textColor: "#fff",
-      order: "1",
-    },
-    {
-      value: "Due",
-      backgroundColor: "#fc8203",
-      textColor: "#fff",
-      order: "1",
-    },
-    {
-      value: "Cancelled",
-      backgroundColor: "#fd5203",
-      textColor: "#fff",
-      order: "1",
-    },
-  ]);
+  const User = useContext(UserContext);
   const [statusSelected, setStatusSelected] = useState("");
   const [orderSelected, setOrderSelected] = useState("");
   const [displayBackgroudPicker, setDisplayBackgroundPicker] = useState(false);
@@ -39,12 +15,11 @@ export default function Status({ isModalVisible, setIsModalVisible }) {
   const [textColor, setTextColor] = useState("#000");
   const [displayTextPicker, setDisplayTextPicker] = useState(false);
 
-  const User = UserContext(UserContext);
-
   const popover = {
     position: "absolute",
     zIndex: "2",
   };
+
   const cover = {
     position: "fixed",
     top: "0px",
@@ -68,15 +43,13 @@ export default function Status({ isModalVisible, setIsModalVisible }) {
   };
 
   const addStatus = () => {
-    let newStatuses = [...statuses];
-    newStatuses.push({
+    User.getStatuses({
       value: statusSelected,
       textColor: textColor,
       backgroundColor: backgroundColor,
       order: orderSelected,
     });
-    console.log(newStatuses);
-    setStatuses([...newStatuses]);
+
     success();
   };
 
@@ -139,9 +112,6 @@ export default function Status({ isModalVisible, setIsModalVisible }) {
 
   return (
     <div>
-      {/* <Button type="primary" onClick={showModal}>
-        Add Status
-      </Button> */}
       <Modal
         title="Add status"
         visible={isModalVisible}

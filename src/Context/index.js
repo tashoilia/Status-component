@@ -4,34 +4,52 @@ const UserContext = React.createContext();
 class UserProvider extends React.Component {
   constructor() {
     super();
-    this.getName = this.getName.bind(this);
-    this.getCategories = this.getCategories.bind(this);
+    this.getStatuses = this.getStatuses.bind(this);
 
     this.state = {
-      name: "",
-      categories: [],
+      statuses: [
+        {
+          value: "Pending",
+          backgroundColor: "3fc5203",
+          textColor: "#e7bbbb",
+          order: "1",
+        },
+        {
+          value: "Completed",
+          backgroundColor: "#fc5223",
+          textColor: "#fff",
+          order: "1",
+        },
+        {
+          value: "Due",
+          backgroundColor: "#fc8203",
+          textColor: "#fff",
+          order: "1",
+        },
+        {
+          value: "Cancelled",
+          backgroundColor: "#fd5203",
+          textColor: "#fff",
+          order: "1",
+        },
+      ],
     };
   }
 
-  getName(name) {
-    this.setState({
-      name: name,
-    });
-  }
-
-  getCategories(list) {
-    let newList = [...list];
-    this.setState({ categories: newList });
+  getStatuses(list) {
+    let newList = [...this.state.statuses];
+    newList.push(list);
+    this.setState({ statuses: [...newList] });
   }
 
   render() {
+    console.log(this.state.statuses);
     return (
       <UserContext.Provider
         value={{
-          name: this.state.name,
-          categories: this.state.categories,
-          getName: this.getName,
-          getCategories: this.getCategories,
+          statuses: this.state.statuses,
+
+          getStatuses: this.getStatuses,
         }}
       >
         {" "}
